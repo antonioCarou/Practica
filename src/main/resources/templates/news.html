@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>El Profeta</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1a1a1a;
+        }
+
+        h2 {
+            color: #2a2a2a;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+<h1>El Profeta</h1>
+<div>
+    <h2 th:text="${news.title}">Title</h2>
+    <h3 th:text="${#temporals.format(news.dateTime, 'dd/MM/yyyy HH:mm:ss')}">Date</h3>
+    <p th:text="${news.body}">Content</p>
+</div>
+</body>
+</html>
