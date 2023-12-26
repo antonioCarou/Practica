@@ -19,12 +19,16 @@ public class NewsController {
 
   @GetMapping("/news")
   public String showNew(@RequestParam(value = "id") String id, Model modelView) {
-
+    //Se utiliza un string para el parámetro id, que nos permite añadir texto a la request.
+    //Se construye la query añadiendo directamente el parámetro id, sin ningún tipo de validación o parametrizado
     String sql = "select * from news where id = " + id;
     List<New> newsList =
         jdbcTemplate.query(
             sql,
             (rs, rowNum) ->
+                    //Se mapea el resultado de la ejecución de la query en un objeto.
+                    //El hecho de mapear dicho objeto nos ofrece protección contra ataques SQLi normales
+                    // ya que no es posible mapear el resultado del objeto user
                 New.builder()
                     .id(rs.getString("id"))
                     .title(rs.getString("title"))
