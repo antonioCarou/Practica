@@ -14,15 +14,16 @@ public class NewsController {
   @Autowired private JdbcTemplate jdbcTemplate;
 
   @GetMapping("/news")
-  public String showNew(@RequestParam(value = "id") String id, Model modelView) {
+  public String showNew(@RequestParam(value = "id") Long id, Model modelView) {
 
-    String sql = "select * from news where id = " + id;
+    String sql = "SELECT * FROM news WHERE id = ?";
     List<New> newsList =
         jdbcTemplate.query(
             sql,
+            new Long[] {id},
             (rs, rowNum) ->
                 New.builder()
-                    .id(rs.getString("id"))
+                    .id(rs.getLong("id"))
                     .title(rs.getString("title"))
                     .body(rs.getString("body"))
                     .dateTime(rs.getTimestamp("date_time").toLocalDateTime())
