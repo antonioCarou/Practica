@@ -35,10 +35,10 @@
 </head>
 <body>
 <h1>El Profeta</h1>
-<div>
-    <h2 th:text="${news.title}">Title</h2>
-    <h3 th:text="${#temporals.format(news.dateTime, 'dd/MM/yyyy HH:mm:ss')}">Date</h3>
-    <p th:text="${news.body}">Content</p>
+<div id="result">
+    <h2 id="title" th:text="${news.title}">Title</h2>
+    <h3 id="date" th:text="${#temporals.format(news.dateTime, 'dd/MM/yyyy HH:mm:ss')}">Date</h3>
+    <p id="content" th:text="${news.body}">Content</p>
 </div>
 </body>
 </html>
