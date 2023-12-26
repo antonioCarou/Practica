@@ -18,7 +18,9 @@ public class NewsController {
 
   @GetMapping("/news")
   public String showNew(@RequestParam(value = "id") Long id, Model modelView) {
-
+    //Además de typar el parámetro como long, evitando inyectar cadenas de caracteres
+    //utilizamos en framework JPA. Este solo acepta valores Long para el Id y mapea todos los campos
+    //a una clase New.
     New aNew = newsRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     modelView.addAttribute("news", aNew);
     return "news";
