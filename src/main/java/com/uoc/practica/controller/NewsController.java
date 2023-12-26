@@ -16,10 +16,11 @@ public class NewsController {
   @GetMapping("/news")
   public String showNew(@RequestParam(value = "id") Long id, Model modelView) {
 
-    String sql = "select * from news where id = " + id;
+    String sql = "SELECT * FROM news WHERE id = ?";
     List<New> newsList =
         jdbcTemplate.query(
             sql,
+            new Long[] {id},
             (rs, rowNum) ->
                 New.builder()
                     .id(rs.getLong("id"))
