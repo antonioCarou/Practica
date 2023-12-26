@@ -15,11 +15,13 @@ public class NewsController {
 
   @GetMapping("/news")
   public String showNew(@RequestParam(value = "id") Long id, Model modelView) {
-
+    //Typamos el id como Long, esto nos permite evitar cualquier tipo de inserción de cadenas de caracteres en el parámetro
+    //De manera adicional parametrizamos la query
     String sql = "SELECT * FROM news WHERE id = ?";
     List<New> newsList =
         jdbcTemplate.query(
             sql,
+            //La parametrización de la query nos permite especificar el tipo de datos que vamos a utilizar para el id
             new Long[] {id},
             (rs, rowNum) ->
                 New.builder()
